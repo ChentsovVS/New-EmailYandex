@@ -90,7 +90,7 @@ function New-EmailYandex {
                 `"department_id`": $Department,
                 `"password`": `"$Password`",
                 `"nickname`": `"$NickName`",
-                `"position`": `"
+                `"position`": `"$Position`",
                 `"name`": {
                           `"first`": `"$FirstName`",
                           `"last`": `"$SurName`"
@@ -98,7 +98,7 @@ function New-EmailYandex {
                 `n}"
             
                 # отправляем пост запрос с данными для регистрации пользователя 
-            $Response = Invoke-WebRequest -Uri $WorkURL -Method Post -Headers $Headers -Body $Body -ContentType "application/json"    
+            $Response = Invoke-WebRequest -Uri $WorkURL -Method Post -Headers $Headers -Body $Body -ContentType "application/json; charset=utf-8"    
         }
 
         # Массовое создание пользователей через csv
@@ -123,7 +123,7 @@ function New-EmailYandex {
                     }"
                     
                     # отправляем пост запрос с данными для регистрации пользователей 
-                    $Response = Invoke-RestMethod -Uri $WorkURL -Method Post -Headers ($Headers | ConvertTo-Json) -Body ($Body | ConvertTo-Json) -ContentType "application/json"    
+                    $Response = Invoke-RestMethod -Uri $WorkURL -Method Post -Headers $Headers -Body $Body -ContentType "application/json; charset=utf-8"    
                 }
             }
         
